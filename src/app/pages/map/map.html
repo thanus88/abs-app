@@ -1,0 +1,17 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Map</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content >
+<!--  <ion-searchbar 
+    (setAddress)="getAddress($event)" type="search" class="searchbar-ion" #ionSearchBar >
+  </ion-searchbar> -->
+  <input #searchPlaceText type="search" placeholder="Search Place" class="pac-card" >
+  <div #mapCanvas class="map-canvas" [hidden]="false" ></div>
+
+</ion-content>

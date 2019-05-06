@@ -1,0 +1,52 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button text="Schedule" defaultHref="/app/tabs/(schedule:schedule)"></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{session?.name}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <!--<ion-input [(ngModel)]="model.targetUrl" #targetUrl="ngModel" placeholder="Please enter an RSS/Atom Feed URL"></ion-input> -->
+  <ion-button  (click)="parseUrl()">
+    <ion-icon name="logo-rss"></ion-icon>
+  </ion-button>
+
+    <ion-list>
+        <ion-item >
+          {{model.result.title}}
+        </ion-item >
+        <ion-card #item *ngFor="let entry of model.result.items" >
+          <ion-card-header>
+            <ion-card-subtitle>{{entry.pubDate}}</ion-card-subtitle>
+            <ion-card-title>{{entry.title}}</ion-card-title>
+          </ion-card-header>
+
+          <ion-card-content>
+            {{entry.content}}
+          </ion-card-content>
+        </ion-card>
+
+        <!--
+        <ion-item-sliding #item *ngFor="let entry of model.result.items">
+            <ion-item >
+              <ion-avatar slot="start">
+                  <img [src]="model.result.image.link" alt="Speaker profile pic">
+                </ion-avatar>
+               {{entry.title}} <a (click)="openUrl(entry)"></a>
+            </ion-item>
+            
+            <ion-item-options side="left">
+              <button (click)="favorite(entry)">Favorite</button>
+              <button color="danger" (click)="share(entry)">Share</button>
+            </ion-item-options>
+
+            <ion-item-options side="right">
+              <button (click)="unread(entry)">Unread</button>
+            </ion-item-options>
+            
+        </ion-item-sliding>
+        -->
+    </ion-list>
+</ion-content>  

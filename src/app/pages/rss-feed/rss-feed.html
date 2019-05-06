@@ -1,0 +1,60 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button text="Choice" defaultHref="/app/tabs/(choice:choice)"></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{session?.name}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content item-height="20%" #content1 >
+
+  <div>
+    <ion-chip (click)="onClickFeedSource(item)" class="chip-outline ios ion-activatable hydrated" *ngFor="let item of model.feedTypeSource.feedSource">
+      <ion-avatar class="ios hydrated">
+        <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIj48cGF0aCBmaWxsPSIjYzVkYmZmIiBkPSJNMCAwaDUxMnY1MTJIMHoiLz48cGF0aCBkPSJNMjU2IDMwNGM2MS42IDAgMTEyLTUwLjQgMTEyLTExMlMzMTcuNiA4MCAyNTYgODBzLTExMiA1MC40LTExMiAxMTIgNTAuNCAxMTIgMTEyIDExMnptMCA0MGMtNzQuMiAwLTIyNCAzNy44LTIyNCAxMTJ2NTZoNDQ4di01NmMwLTc0LjItMTQ5LjgtMTEyLTIyNC0xMTJ6IiBmaWxsPSIjODJhZWZmIi8+PC9zdmc+">
+      </ion-avatar>
+      <ion-label class="sc-ion-label-ios-h sc-ion-label-ios-s ios hydrated">{{item.venderName}}</ion-label>
+    </ion-chip>
+
+    <div *ngIf="model.feedSourceSelected; then showfeedType">
+    </div>
+
+    <ng-template #showfeedType>
+      <ion-slides pager="true"  [options]="slideOpts" >
+      <ion-slide #feedType *ngFor="let item of model.feedTypeSource.feedTypes[0].types" >
+        <ion-card (click)="parseUrl(item.url)" >
+          <ion-item>
+            <ion-avatar>
+              <img src="https://s.isanook.com/sh/0/di/apple-touch-icon-precomposed.png">
+            </ion-avatar>
+            <ion-label>{{item.descTh}}</ion-label>
+          </ion-item>
+        </ion-card>
+      </ion-slide>
+    </ion-slides>
+    </ng-template>
+
+  </div>
+</ion-content>
+<ion-content item-height="80%" #content2 >
+      <ion-infinite-scroll (ionInfinite)="parseUrl()" >
+        <ion-infinite-scroll-content loadingSpinner="bubbles" >
+          <ion-card #item *ngFor="let entry of model.result.items" >
+              <div *ngIf="entry.enclosure; then templateName">
+              </div>
+
+              <ng-template #templateName>
+                <img [src]="entry.enclosure.url" />
+              </ng-template>
+              
+              <ion-card-header>
+                <ion-card-subtitle>{{entry.pubDate}}</ion-card-subtitle>
+                <a (click)="openUrl(entry)">
+                  <ion-card-title>{{entry.title}}</ion-card-title>
+                </a>
+              </ion-card-header>
+            </ion-card>
+        </ion-infinite-scroll-content>
+      </ion-infinite-scroll>
+</ion-content>

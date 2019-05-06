@@ -1,0 +1,37 @@
+page-map {
+  .map-canvas {
+    position: relative;
+
+    height: 100%;
+    width: 100%;
+
+    background-color: transparent;
+
+    opacity: 0;
+    transition: opacity 150ms ease-in;
+    z-index: 1000;
+  }
+
+  .show-map {
+    opacity: 1;
+  }
+
+  .pac-card {
+    margin: 10px 10px 100 0;
+    border-radius: 2px 0 0 2px;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    outline: none;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+    background-color: #fff;
+    font-family: Roboto;
+    z-index: 1001;
+  }
+
+  .searchbar-ion {
+    z-index: 1001;
+    max-height: 100px;
+    
+  }
+
+}

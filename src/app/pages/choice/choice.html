@@ -1,0 +1,44 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Choice</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="presentPopover($event)">
+        <ion-icon slot="icon-only" name="more"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content id="fhm_page">  
+        <div class="fhm_container">  
+            <div class="fhm_row">  
+                <div class="fhm_item fhm_item1">  
+                    <span (click)="onRssFeed()" >
+                        <ion-icon name="logo-rss"></ion-icon>
+                    </span>  
+                </div>  
+                <div class="fhm_item fhm_item2">  
+                    <span><ion-icon name="musical-notes"></ion-icon></span>  
+                </div>  
+            </div>  
+            <div class="fhm_row">  
+                <div class="fhm_item fhm_item3">  
+                    <span><ion-icon name="film"></ion-icon></span>  
+                </div>  
+                <div class="fhm_item fhm_item4">  
+                    <span><ion-icon name="pin"></ion-icon></span>  
+                </div>  
+            </div>  
+            <div class="fhm_row">  
+                <div class="fhm_item fhm_item5">  
+                    <span><ion-icon name="subway"></ion-icon></span>  
+                </div>  
+                <div class="fhm_item fhm_item6">  
+                    <span><ion-icon name="logo-bitcoin"></ion-icon></span>  
+                </div>  
+            </div>  
+        </div>  
+    </ion-content>
