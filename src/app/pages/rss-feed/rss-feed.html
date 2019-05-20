@@ -7,36 +7,46 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content item-height="20%" #content1 >
+<ion-toolbar>
 
   <div>
-    <ion-chip (click)="onClickFeedSource(item)" class="chip-outline ios ion-activatable hydrated" *ngFor="let item of model.feedTypeSource.feedSource">
-      <ion-avatar class="ios hydrated">
-        <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIj48cGF0aCBmaWxsPSIjYzVkYmZmIiBkPSJNMCAwaDUxMnY1MTJIMHoiLz48cGF0aCBkPSJNMjU2IDMwNGM2MS42IDAgMTEyLTUwLjQgMTEyLTExMlMzMTcuNiA4MCAyNTYgODBzLTExMiA1MC40LTExMiAxMTIgNTAuNCAxMTIgMTEyIDExMnptMCA0MGMtNzQuMiAwLTIyNCAzNy44LTIyNCAxMTJ2NTZoNDQ4di01NmMwLTc0LjItMTQ5LjgtMTEyLTIyNC0xMTJ6IiBmaWxsPSIjODJhZWZmIi8+PC9zdmc+">
-      </ion-avatar>
-      <ion-label class="sc-ion-label-ios-h sc-ion-label-ios-s ios hydrated">{{item.venderName}}</ion-label>
-    </ion-chip>
-
-    <div *ngIf="model.feedSourceSelected; then showfeedType">
+    <div style="padding: 10px;" >
+      <ion-chip (click)="onClickFeedSource(item)" class="chip-outline ios ion-activatable hydrated" 
+        *ngFor="let item of model.feedTypeSource.feedSource">
+        <ion-avatar class="ios hydrated">
+          <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIj48cGF0aCBmaWxsPSIjYzVkYmZmIiBkPSJNMCAwaDUxMnY1MTJIMHoiLz48cGF0aCBkPSJNMjU2IDMwNGM2MS42IDAgMTEyLTUwLjQgMTEyLTExMlMzMTcuNiA4MCAyNTYgODBzLTExMiA1MC40LTExMiAxMTIgNTAuNCAxMTIgMTEyIDExMnptMCA0MGMtNzQuMiAwLTIyNCAzNy44LTIyNCAxMTJ2NTZoNDQ4di01NmMwLTc0LjItMTQ5LjgtMTEyLTIyNC0xMTJ6IiBmaWxsPSIjODJhZWZmIi8+PC9zdmc+">
+        </ion-avatar>
+        <ion-label class="sc-ion-label-ios-h sc-ion-label-ios-s ios hydrated">{{item.venderName}}</ion-label>
+      </ion-chip>
     </div>
+
+    <div *ngIf="model.feedSourceSelected; then showfeedType"></div>
 
     <ng-template #showfeedType>
       <ion-slides pager="true"  [options]="slideOpts" >
-      <ion-slide #feedType *ngFor="let item of model.feedTypeSource.feedTypes[0].types" >
-        <ion-card (click)="parseUrl(item.url)" >
-          <ion-item>
-            <ion-avatar>
-              <img src="https://s.isanook.com/sh/0/di/apple-touch-icon-precomposed.png">
-            </ion-avatar>
-            <ion-label>{{item.descTh}}</ion-label>
-          </ion-item>
-        </ion-card>
-      </ion-slide>
-    </ion-slides>
+        <ion-slide #feedType *ngFor="let item of model.feedTypeSource.feedTypes[0].types" >
+          <ion-card (click)="parseUrl(item.url)" >
+            <ion-item>
+              <ion-avatar>
+                <img src="https://s.isanook.com/sh/0/di/apple-touch-icon-precomposed.png">
+              </ion-avatar>
+              <ion-label>{{item.descTh}}</ion-label>
+            </ion-item>
+          </ion-card>
+        </ion-slide>
+      </ion-slides>
     </ng-template>
 
   </div>
-</ion-content>
+
+  <div *ngIf="model.result.items; then showSearchBar"></div>
+
+  <ng-template #showSearchBar>
+    <ion-searchbar (ionInput)="getItems($event)" (ionClear)="onSearchBarClear($event)" style="padding-bottom: 10px;" >
+    </ion-searchbar>
+  </ng-template>
+</ion-toolbar>
+
 <ion-content item-height="80%" #content2 >
       <ion-infinite-scroll (ionInfinite)="parseUrl()" >
         <ion-infinite-scroll-content loadingSpinner="bubbles" >

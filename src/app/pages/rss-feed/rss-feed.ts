@@ -20,7 +20,7 @@ export class RssFeedPage {
   };
   model = {
     defaultUrl : 'https://news.google.com/rss?hl=th&gl=TH&ceid=TH:th',
-    targetUrl : '',
+    targetUrl : null,
     result : {},
     feedSourceSelected : '',
     feedTypeSource : {
@@ -129,6 +129,7 @@ export class RssFeedPage {
   }
   parseUrl(url){
     console.log('parseUrl');
+
     if(!url){
       url = this.model.defaultUrl;
     } else {
@@ -142,6 +143,21 @@ export class RssFeedPage {
 
   onClickFeedSource(item){
     this.model.feedSourceSelected = item.venderName;
+  }
+
+  getItems(ev) {
+    // set val to the value of the ev target
+    let val = ev.target.value;
+    // if the value is an empty string don't filter the items
+    if (val && val.trim() != '') {
+      this.model.result['items'] = this.model.result['items'].filter((item) => {
+        return (item.title.toLowerCase().indexOf(val.toLowerCase()) > -1);
+      })
+    }
+  }
+
+  onSearchBarClear(ev){
+    console.log(this.model.result['items']);
   }
 
   share(entry){}
